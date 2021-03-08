@@ -14,16 +14,17 @@ acclist = []
 value = ['Speed difference', 'Mass & Force', 'Distance traveled']
     
 
+
 def equation(event):
     b = []
     c = combobox.get()
     if len(b) == 0: # 콤보박스 리스트 중 다른 요소 선택시 텍스트 필드 초기화
+    # destroy 안됨
         frame = tkinter.Frame(window)
-        frame.pack()    
+        frame.pack()
         b.append(c)
     else:
-        for widget in frame.winfo_children():
-            widget.destroy()
+        frame.destroy()
         frame = tkinter.Frame(window)
         frame.pack()
         b[0] = c
@@ -31,8 +32,8 @@ def equation(event):
         
     # speed difference
     if b[0] == value[0]:
-        for widget in frame.winfo_children():
-            widget.destroy()
+        if frame is True:
+            frame.deestory()
         frame = tkinter.Frame(window)
         frame.pack()
         initialspeed = []
@@ -93,8 +94,8 @@ def equation(event):
         
     # mass and force
     if b[0] == value[1]:
-        for widget in frame.winfo_children():
-            widget.destroy()
+        if frame is True:
+            frame.deestory()
         frame = tkinter.Frame(window)
         frame.pack()
         masslist = []
@@ -144,8 +145,8 @@ def equation(event):
     
     # distance traveled
     if b[0] == value[2]:
-        for widget in frame.winfo_children():
-            widget.destroy()
+        if frame is True:
+            frame.deestory()
         frame = tkinter.Frame(window)
         frame.pack()
         initialspeed = []
@@ -213,6 +214,8 @@ combobox = tkinter.ttk.Combobox(window, height = 15, values = value)
 combobox.pack()
 combobox.set('Given')
 combobox.bind('<<ComboboxSelected>>', equation)
+
+
 
 
 
