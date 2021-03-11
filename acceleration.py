@@ -43,10 +43,13 @@ def equation(event):
         input1 = Entry(frame)
         input1.pack()
         label1 = Label(frame, text = 'Initial speed : 0 [m/s]')
+        # the initial speed of the object.
         label1.pack()
-        label2 = Label(frame, text = 'Final spped : 0 [m/s]')
+        label2 = Label(frame, text = 'Final speed : 0 [m/s]')
+        # the final speed of the object.
         label2.pack()
         label3 = Label(frame, text = 'Time : 0 [s]')
+        # gap of the time when the object had traveled from initial point and terminal point
         label3.pack()
         def initial():
             v1 = float(input1.get())
@@ -87,12 +90,17 @@ def equation(event):
             v2 = finalspeed[0]
             t = timelist[0]
             a = (v2 - v1) / t
+            # v2 = v1 + at
+            # -> v2 - v1 = at
+            # -> a = (v2 - v1) / t
             label4.config(text = 'Acceleration : ' + str(a) + ' [m/s^2]')
         
         button = Button(frame, text = 'resolve', command = resolve)
         button.pack()
         
     # mass and force
+    # F = ma
+    # -> a = F / m
     if b[0] == value[1]:
         if frame is True:
             frame.deestory()
@@ -163,6 +171,7 @@ def equation(event):
         label3.pack()
         
         def initial():
+            # initial speed of the object
             v = float(input3.get())
             if len(initialspeed) == 0:
                 initialspeed.append(v)
@@ -173,6 +182,7 @@ def equation(event):
         button.pack()
         
         def dis():
+            # distance which the object had traveled from initial point to terminal point
             d = float(input3.get())
             if len(distance) == 0:
                 distance.append(d)
@@ -183,6 +193,7 @@ def equation(event):
         button.pack()
         
         def time():
+            # the gap of the time when the object traveled from start point to final point
             t = float(input3.get())
             if len(timelist) == 0:
                 timelist.append(t)
@@ -202,6 +213,9 @@ def equation(event):
             d = distance[0]
             t = timelist[0]
             a = 2*(d - v*t) / t**2
+            # x = x0 + v0t + 0.5at^2
+            # -> (if x0 = 0), x - v0t = 0.5at^2
+            # -> 2(x - v0t) / t^2
             label4.config(text = 'Acceleration : ' + str(a) + ' [m/s^2]')
             
         button = Button(frame, text = 'resolve', command = resolve)

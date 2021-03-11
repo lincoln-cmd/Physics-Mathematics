@@ -3,11 +3,11 @@ from tkinter import *
 
 '''main menu'''
 window = tkinter.Tk()
-window.title('Physics & Mathmetics')
+window.title('Physics & Mathematics')
 window.geometry('640x880+100+100')
 window.resizable(True, True)
 
-label = Label(window, text = 'Pyhsics & Mathmetics', height = 5, relief = 'solid', fg = 'blue')
+label = Label(window, text = 'Pyhsics & Mathematics', height = 5, relief = 'solid', fg = 'blue')
 label.pack()
 '''
 button1 = Button(window, text = 'Classical mechanics')#, command = classic)
@@ -46,6 +46,13 @@ button15.pack()
 def quit():
     window.quit()
     window.destroy()
+    
+'''Classical mechanics'''
+
+
+'''Classical mechanics'''
+
+
 
 '''rocket mechanics'''
 def rocket():

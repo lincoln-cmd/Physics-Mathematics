@@ -113,7 +113,7 @@ def resolve():
 button = Button(frame1, text = 'resolve', command = resolve)
 button.pack(side = 'bottom')
 
-material = ['Hydrogen', 'Helium', 'Aerographite', 'Metallic microlattice', 'Aerogel', 'Air', 'Tungsten hexafluoride', 'Liquid hydrogen', 'Styrofoam', 'Cork', 'Pine', 'Lithium', 'Wood', 'Oak', 'Potassium', 'Ice', 'Cooking oil', 'Sodium', 'Water', 'Water', 'Liquid oxygen', 'Nylon', 'Plastics', 'Glycerol', 'Tetrachloroethene', 'Sand', 'Magnesium', 'Beryllium', 'Concrete', 'Glass', 'Silicon', 'Quartzite', 'Granite', 'Gneiss', 'Aluminium', 'Limestone', 'Basalt', 'Diiodomethane', 'Diamond', 'Titanium', 'Selenium', 'Vanadium', 'Antimony', 'Zinc', 'Chromium', 'Tin', 'Manganese', 'Iron', 'Niobium', 'Brass', 'Cadmium', 'Cobalt', 'Nickel', 'Copper', 'Bismuth', 'Molybdenum', 'Silver', 'Lead', 'Thorium', 'Rhodium', 'Mercury', 'Tantalum', 'Uranium', 'Tungsten', 'Gold', 'Plutonium', 'Rhenium', 'Platinum', 'Iridium', 'Osmium']
+material = ['Hydrogen', 'Helium', 'Aerographite', 'Metallic microlattice', 'Aerogel', 'Air', 'Tungsten hexafluoride', 'Liquid hydrogen', 'Styrofoam', 'Cork', 'Pine', 'Lithium', 'Wood', 'Oak', 'Potassium', 'Ice', 'Cooking oil', 'Sodium', 'Water(fresh)', 'Water(salt)', 'Liquid oxygen', 'Nylon', 'Plastics', 'Glycerol', 'Tetrachloroethene', 'Sand', 'Magnesium', 'Beryllium', 'Concrete', 'Glass', 'Silicon', 'Quartzite', 'Granite', 'Gneiss', 'Aluminium', 'Limestone', 'Basalt', 'Diiodomethane', 'Diamond', 'Titanium', 'Selenium', 'Vanadium', 'Antimony', 'Zinc', 'Chromium', 'Tin', 'Manganese', 'Iron', 'Niobium', 'Brass', 'Cadmium', 'Cobalt', 'Nickel', 'Copper', 'Bismuth', 'Molybdenum', 'Silver', 'Lead', 'Thorium', 'Rhodium', 'Mercury', 'Tantalum', 'Uranium', 'Tungsten', 'Gold', 'Plutonium', 'Rhenium', 'Platinum', 'Iridium', 'Osmium']
 density = ['0.0898', '0.179', '0.2', '0.9', '1.0', '1.2', '12.4', '70', '75', '240', '373', '535', '700', '710', '860', '916.7', '920', '970', '1000', '1030', '1141', '1150', '1175', '1261', '1622', '1600', '1740', '1850', '2400', '2500', '2330', '2600', '2700', '2700', '2700', '2750', '3000', '3325', '3500', '4540', '4800', '6100', '6690', '7000', '7200', '7310', '7325', '7870', '8570', '8600', '8650', '8900', '8900', '8940', '9750', '10220', '10500', '11340', '11700', '12410', '13546', '16600', '18800', '19300', '19320', '19840', '21020', '21450', '22420', '22570']
 
 
@@ -124,6 +124,8 @@ frame2_1.pack()
 g = 9.8
 label4 = Label(frame2_1, text = 'Density : 0 [kg/m^3]')
 label5 = Label(frame2_1, text = 'Pressure : 0 [Pa]')
+label6 = Label(frame2_1, text = 'Volume : 0 [m^3]')
+label7 = Label(frame2_1, text = 'Force : 0 [kg]')
 
 scrollbar = tkinter.Scrollbar(frame2_1)
 scrollbar.pack(side = 'right', fill = 'y')
@@ -139,15 +141,23 @@ def poll(event):
         data = event.widget.get(index)
         d = density[index]
         p = g * float(d)
+        v = 1 / float(d)
+        m = float(d) * g
         label4.config(text = 'Density : ' + str(d) + ' [kg/m^3]')
         label5.config(text = 'Pressure : ' + str(p) + ' [Pa]')
+        label6.config(text = 'Volume : ' + str(v) + ' [m^3]')
+        label7.config(text = 'Force : ' + str(m) + ' [N]')
 listbox.bind('<<ListboxSelect>>', poll)
 label4.pack()
-
-
 label5.pack()
-
-label6 = Label(frame2, text = 'The Pressure is estimated in the situation when the "height" is 1[m] \n and the "gravitiona acceleration" is 9.8[m/s^2]. (P = pgh)')
 label6.pack()
+label7.pack()
+
+label = Label(frame2, text = '* The Pressure is estimated in the situation when the "height" is 1[m] \n and the "gravitiona acceleration" is 9.8[m/s^2]. (P = pgh)')
+label.pack(ipady = 10)
+label = Label(frame2, text = '* The Volume is 1kg of the selected matter accounts for. (V = m / p)')
+label.pack(ipady = 10)
+label = Label(frame2, text = '* The Force is the weight of the selected matter which \n accounts for 1m^3 of volume in Earth. (m = pV, g = 9.8 [m/s^2])')
+label.pack()
 
 window.mainloop()
