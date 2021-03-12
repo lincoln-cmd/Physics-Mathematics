@@ -59,7 +59,7 @@ input1 = Entry(frame1_1)
 input1.insert(0, 'Weight/mass [kg]')
 input1.pack()
 def wei():
-    weight = input1.get()
+    weight = input1.get() # input the weight/mass
     try:
         weight = float(input1.get())
         label1.config(text = 'Weight/mass : ' + str(weight) + ' [kg]')
@@ -74,7 +74,7 @@ input2 = Entry(frame1_2)
 input2.insert(0, 'Volume [m^3]')
 input2.pack()
 def vol():
-    vol = input2.get()
+    vol = input2.get() # input the vlume
     try:
         volume = float(input2.get())
         label2.config(text = 'Volume : ' + str(volume) + ' [kg]')
@@ -103,14 +103,15 @@ def resolve():
     except:
         try:
             mas = float(input1.get())
-        except:
+        except: # if the value of the weight/mass is not defined, alarm the error message
             messagebox.showerror('Weight/mass error','The value of \'Weight/mass\' has to have float value')
         try:
             vol = float(input2.get())
-        except:
+        except: # if the value of the volume is not defined, alarm the error message
             messagebox.showerror('Volume error', 'The value of \'Volume\' has to have float value')
          
 button = Button(frame1, text = 'resolve', command = resolve)
+# even though the weight/mass and volume button are not put, if those values are inserted in Entry, the density value can be resolved because the function(definition) 'resolve' can get the values of weight/mass and volume from directly from the entry by utilizing the get() methode
 button.pack(side = 'bottom')
 
 material = ['Hydrogen', 'Helium', 'Aerographite', 'Metallic microlattice', 'Aerogel', 'Air', 'Tungsten hexafluoride', 'Liquid hydrogen', 'Styrofoam', 'Cork', 'Pine', 'Lithium', 'Wood', 'Oak', 'Potassium', 'Ice', 'Cooking oil', 'Sodium', 'Water(fresh)', 'Water(salt)', 'Liquid oxygen', 'Nylon', 'Plastics', 'Glycerol', 'Tetrachloroethene', 'Sand', 'Magnesium', 'Beryllium', 'Concrete', 'Glass', 'Silicon', 'Quartzite', 'Granite', 'Gneiss', 'Aluminium', 'Limestone', 'Basalt', 'Diiodomethane', 'Diamond', 'Titanium', 'Selenium', 'Vanadium', 'Antimony', 'Zinc', 'Chromium', 'Tin', 'Manganese', 'Iron', 'Niobium', 'Brass', 'Cadmium', 'Cobalt', 'Nickel', 'Copper', 'Bismuth', 'Molybdenum', 'Silver', 'Lead', 'Thorium', 'Rhodium', 'Mercury', 'Tantalum', 'Uranium', 'Tungsten', 'Gold', 'Plutonium', 'Rhenium', 'Platinum', 'Iridium', 'Osmium']
