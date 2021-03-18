@@ -42,7 +42,6 @@ label1.pack()
 collisiontype = ['Perfectly elastic', 'Partially elastic', 'Perfectly inelastic']
 inputlist = ['input1', 'input2', 'input3', 'input4', 'input5']
 
-
 combobox = tkinter.ttk.Combobox(frame1_1, height = 15, values = collisiontype)
 
 def poll(event):
@@ -54,38 +53,44 @@ def poll(event):
     
     def libox(event2):
         #selection = listbox.curselection() # selection is converted as int of tuple
-        list2 = []
+        selectlist = []
         if c == collisiontype[0]:
             frame1_3 = Frame(frame1) # refresh the frame1_3 whenever the selected item in listbox is changed
             frame1_3.pack(expand = True, fill = 'both')
+            list2 = []
             for i in range(len(elements)):
                 selection = event2.widget.curselection()
+                if len(selectlist) == 0:
+                    selectlist.append(selection[0])
+                else:
+                    selectlist[0] = selection[0]
                 if i != selection[0]:
                     list2.append(elements[i])
             for i in range(len(inputlist)):
                 inputlist[i] = Entry(frame1_3)
                 inputlist[i].insert(0, list2[i])
                 inputlist[i].pack()
-
-            
+                print(inputlist[i])
+      
         def resolve():
-            i = selection[0]
-            if i == elements[0]:
+            i = selectlist[0]
+            print(i)
+            if i == elements.index('Mass1'):
                 u1 = float(input1.get()) # initial velocity of object1
                 v1 = float(input2.get()) # final velocity of object1
                 m2 = float(input3.get()) # mass of object2
                 u2 = float(input4.get()) # initial velocity of object2
                 v2 = float(input5.get()) # final velocity of object2
                 m1 = m2*(v2 - u2) / (u1 - v1) # mass of object1
-                label1.config(text = 'mass1 : ' + str(m1) + ' [kg]')
-                        
+                label1.config(text = 'Mass1 : ' + str(m1) + ' [kg]')
+
         button = Button(frame1_3, text = 'resolve', command = resolve)
         button.pack()
         
         
     listbox.bind('<<ListboxSelect>>', libox)
 
-        
+
 
 combobox.pack()
 combobox.set('Given')
