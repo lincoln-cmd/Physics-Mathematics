@@ -41,6 +41,7 @@ label1.pack()
 # Inelastic collision : https://byjus.com/physics/inelastic-collision/
 collisiontype = ['Perfectly elastic', 'Partially elastic', 'Perfectly inelastic']
 inputlist = ['input1', 'input2', 'input3', 'input4', 'input5']
+entries = []
 
 combobox = tkinter.ttk.Combobox(frame1_1, height = 15, values = collisiontype)
 

@@ -2,6 +2,7 @@
 
 import tkinter
 from tkinter import *
+from tkinter import ttk
 
 window = tkinter.Tk()
 window.title('Friction')
@@ -17,11 +18,12 @@ frame2.pack(expand = True, fill = 'both')
 frame3 = Frame(window)
 frame3.pack(expand = True, fill = 'both')
 
-label1 = Label(frame3, text = '')
+label1 = Label(frame3, text = 'result')
 label1.pack()
 
 constant = ['Friction coefficient(μ)', 'Normal force[N]', 'Friction(F)']
 inputlist = ['input1', 'input2']
+entries = []
 
 def equation(event):
     c = combobox.get()
@@ -30,20 +32,66 @@ def equation(event):
         for i in constant:
             if i != c:
                 list2.append(i)
-        for i in inputlist:
-            j = i
-            i = Entry(frame2)
-            i.insert(0, list2[inputlist.index(j)])
-            i.pack()
-            print(i)
+        for i, text in enumerate(inputlist):
+            text = Entry(frame2)
+            text.insert(0, list2[i])
+            text.pack()
+            entries.append(text)
             
         def resolve():
-            n = float(input1.get())
-            f = float(input2.get())
+            list3 = []
+            for i in entries:
+                list3.append(i.get())
+            n = float(list3[0])
+            f = float(list3[1])
             μ = f / n
-            label1.config(text = 'μ : ' + str(μ))
+            label1.config(text = 'Friction coefficient(μ) : ' + str(μ))
         button = Button(frame2, text = 'resolve', command = resolve)
         button.pack()
+    
+    if c == constant[1]:
+        list2 = []
+        for i in constant:
+            if i != c:
+                list2.append(i)
+        for i, text in enumerate(inputlist):
+            text = Entry(frame2)
+            text.insert(0, list2[i])
+            text.pack()
+            entries.append(text)
+            
+        def resolve():
+            list3 = []
+            for i in entries:
+                list3.append(i.get())
+            μ = float(list3[0])
+            f = float(list3[1])
+            n = f / μ
+            label1.config(text = 'Normal force(N) : ' + str(n) + ' [N]')
+        button = Button(frame2, text = 'resolve', command = resolve)
+        button.pack()
+    if c== constant[2]:
+        list2 = []
+        for i in constant:
+            if i != c:
+                list2.append(i)
+        for i, text in enumerate(inputlist):
+            text = Entry(frame2)
+            text.insert(0, list2[i])
+            text.pack()
+            entries.append(text)
+            
+        def resolve():
+            list3 = []
+            for i in entries:
+                list3.append(i.get())
+            μ = float(list3[0])
+            n = float(list3[1])
+            f = μ * n
+            label1.config(text = 'Friction(F)' + str(f) + ' [N]')
+        button = Button(frame2, text = 'resolve', command = resolve)
+        button.pack()
+            
         
 combobox = tkinter.ttk.Combobox(frame1, height = 15, values = constant)
 combobox.pack()
